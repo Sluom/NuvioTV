@@ -11,7 +11,6 @@ object PlayerSubtitleRtlFix {
         return RTL_CHAR_PATTERN.matcher(text).find()
     }
 
-    // مطابقة لنوع البيانات الذي تستدعيه شاشة التهيئة
     fun fixCueText(text: CharSequence?): CharSequence? {
         if (text.isNullOrEmpty() || !isRtlText(text)) return text
         val textStr = text.toString()
@@ -22,7 +21,7 @@ object PlayerSubtitleRtlFix {
         return fixedLines.joinToString("\n")
     }
 
-    // دوال متوافقة مع قائمة التوقيتات والأكواد الجانبية
+    // مطابقة التوقيع الذي يتوقعه ملف PlayerSidecarSubtitles
     fun fixTimedCues(cues: Any?): Any? {
         return cues
     }
