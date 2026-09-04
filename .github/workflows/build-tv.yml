@@ -24,7 +24,7 @@ jobs:
           keytool -genkey -v -keystore nuviotv.jks -alias nuviotv -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US"
 
       - name: Build Full Debug APK
-        run: ./gradlew assembleFullDebug -x validateSigningFullDebug --stacktrace
+        run: ./gradlew assembleFullDebug -x validateSigningFullDebug --warning-mode=none --console=plain
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
