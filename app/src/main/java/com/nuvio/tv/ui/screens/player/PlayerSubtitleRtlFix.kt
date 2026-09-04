@@ -1,5 +1,6 @@
 package com.nuvio.tv.ui.screens.player
 
+import androidx.media3.common.text.Cue
 import java.util.regex.Pattern
 
 object PlayerSubtitleRtlFix {
@@ -21,8 +22,14 @@ object PlayerSubtitleRtlFix {
         return fixedLines.joinToString("\n")
     }
 
-    // مطابقة التوقيع الذي يتوقعه ملف PlayerSidecarSubtitles
-    fun fixTimedCues(cues: Any?): Any? {
+    fun fixCueText(cue: Cue): Cue {
+        val text = cue.text ?: return cue
+        if (!isRtlText(text)) return cue
+        val fixedText = fixCueText(text)
+        return cue.buildUpon().setText(fixedText).build()
+    }
+
+    fun <T> fixTimedCues(cues: T): T {
         return cues
     }
 
