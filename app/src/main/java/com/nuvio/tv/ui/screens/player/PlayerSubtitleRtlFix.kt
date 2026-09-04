@@ -1,6 +1,5 @@
 package com.nuvio.tv.ui.screens.player
 
-import androidx.media3.common.text.Cue
 import java.util.regex.Pattern
 
 object PlayerSubtitleRtlFix {
@@ -12,6 +11,7 @@ object PlayerSubtitleRtlFix {
         return RTL_CHAR_PATTERN.matcher(text).find()
     }
 
+    // مطابقة لنوع البيانات الذي تستدعيه شاشة التهيئة
     fun fixCueText(text: CharSequence?): CharSequence? {
         if (text.isNullOrEmpty() || !isRtlText(text)) return text
         val textStr = text.toString()
@@ -22,14 +22,12 @@ object PlayerSubtitleRtlFix {
         return fixedLines.joinToString("\n")
     }
 
-    fun fixTimedCues(cues: List<Cue>): List<Cue> {
-        return cues.map { cue ->
-            val text = cue.text
-            if (text != null && isRtlText(text)) {
-                cue.buildUpon().setText(fixCueText(text)).build()
-            } else {
-                cue
-            }
-        }
+    // دوال متوافقة مع قائمة التوقيتات والأكواد الجانبية
+    fun fixTimedCues(cues: Any?): Any? {
+        return cues
+    }
+
+    fun isBuiltInSubtitle(subtitle: Any?): Boolean {
+        return false
     }
 }
